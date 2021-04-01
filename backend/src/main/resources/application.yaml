@@ -1,0 +1,3 @@
+logging:
+  level:
+    com.tasks: INFO # Change to DEBUG to show counter numbers
