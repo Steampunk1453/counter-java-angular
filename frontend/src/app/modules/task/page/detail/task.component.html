@@ -1,0 +1,38 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>Task Detail</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="taskForm">
+      <table>
+          <input matInput [formControl]="id" [hidden]="true">
+        <tr>
+          <td>
+            <mat-form-field>
+              <mat-label>Task name</mat-label>
+              <label>
+                <input matInput placeholder="Task name" formControlName="name" name="name" required>
+              </label>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field>
+              <mat-label>Task Description</mat-label>
+              <label>
+                <input matInput placeholder="Task description" formControlName="description" name="description">
+              </label>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button class="btn btn-info" (click)="createTask()" color="primary" *ngIf="isCreateActive">Create</button>
+    <button mat-raised-button class="btn btn-success" (click)="updateTask()" color="primary" *ngIf="isUpdateActive">Update</button>
+    <button mat-raised-button class="btn btn-danger" (click)="cancel()" color="accent">Cancel</button>
+  </mat-card-actions>
+</mat-card>
+
