@@ -1,0 +1,41 @@
+<mat-card *ngIf="isNextActive">
+    <mat-card-title>Please input the configuration for Count from X to Y task</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="counterForm">
+      <table>
+        <tr>
+          <td>
+            <mat-form-field>
+              <input matInput placeholder="Counting from number" formControlName="from" name="from" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field>
+              <input matInput placeholder="Counting to number" formControlName="to" name="to" required>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button class="btn btn-info" (click)="nextStep()" color="primary">Next</button>
+    <button mat-raised-button class="btn btn-danger" (click)="cancel()" color="accent">Cancel</button>
+  </mat-card-actions>
+</mat-card>
+<mat-card *ngIf="isExecuteActive">
+    <mat-card-title>Do you want to execute the task now?</mat-card-title>
+  <mat-card-actions>
+    <button mat-raised-button class="btn btn-info" (click)="executeCounter()" color="primary">Yes</button>
+    <button mat-raised-button class="btn btn-danger" (click)="cancel()" color="accent">No</button>
+  </mat-card-actions>
+</mat-card>
+<mat-card *ngIf="isSpinnerView">
+    <mat-card-content>Currently Number is {{counter}} / {{limit}}</mat-card-content>
+  <mat-spinner *ngIf="showSpinner"></mat-spinner>
+  <mat-card-actions>
+  <button mat-raised-button class="btn btn-danger" (click)="cancelCounter()" color="warn">Cancel execution</button>
+  </mat-card-actions>
+</mat-card>

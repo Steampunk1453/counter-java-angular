@@ -1,0 +1,42 @@
+<mat-card-header>
+  <mat-card-title>Tasks</mat-card-title>
+</mat-card-header>
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+</mat-form-field>
+<div class="mat-fab-button">
+  <button mat-fab color="primary" (click)="navigateToDetail()">
+    <mat-icon>add</mat-icon>
+  </button>
+<div>
+<div class="mat-elevation-z12">
+  <mat-spinner [style.display]="loading ? 'block' : 'none'"></mat-spinner>
+  <mat-table  [style.display]="loading === false ? 'block' : 'none'" #table [dataSource]="dataSource">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef class="mat-header-cell mat-cell">Name</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef class="mat-header-cell mat-cell">Description</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="operations">
+      <mat-header-cell *matHeaderCellDef class="mat-header-cell mat-cell">Operations</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-button color="primary" (click)="navigateToCounter(row)">
+          <mat-icon>alarm</mat-icon>
+        </button>
+        <button mat-button color="primary" (click)="editTask(row)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-button color="primary" (click)="deleteTask(row)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator #paginator [style.display]="loading === false ? 'block' : 'none'" [pageSize]="5"></mat-paginator>
+</div>
